@@ -1,0 +1,21 @@
+.container {
+  width: 960px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.container div.box {
+  background-color: #333;
+  height: 30px;
+}
+.container h1 {
+  color: red;
+}
+
+@media only screen and (max-width: 480px) {
+  div.container {
+    width: 480px;
+    text-align: center;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

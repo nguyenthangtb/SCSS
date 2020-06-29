@@ -1,0 +1,13 @@
+#create network
+    docker network create --driver=bridge --subnet=192.168.1.0/25 --gateway=192.168.1.10 test_api_network
+#create mysql
+    docker container run -d --name test-mysql-server --network=test_api_network --ip=192.168.1.11 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.6
+#Build image
+    docker image build . --rm -t kohada-base
+#Run container
+    docker container run -dit --name project-test-api --network=test_api_network --ip=192.168.1.12 -p 80:80 -p 7001:7001 -p 7002:7002 -p 7003:7003 -v /Volumes/Data/mediabridge/biz-go-example/sources:/usr/share/nginx/html/sources base-test-image
+
+
+#path
+
+docker container run -dit --name project-biz-go --network=biz_go_net --ip=192.168.2.13 -p 80:80 -p 7001:7001 -p 7002:7002 -p 7003:7003 -p 7004:7004 -v /Volumes/Data/mediabridge/biz-go-docker/sources:/usr/share/nginx/html/sources kohada-base
